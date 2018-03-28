@@ -35,7 +35,8 @@ public class RetrieveInfoServlet extends HttpServlet {
 			Employee emp = dao.retreiveEmployeeByUsername(user);
 			if (emp.getId()>0) {
 				LoggingUtil.logTrace("Retreiving info from RetreiveInfo");
-				List<List<ReimbursementForm>> listArray = new ArrayList<List<ReimbursementForm>>();
+				List<Object> listArray = new ArrayList<Object>();
+				listArray.add(user);
 				List<ReimbursementForm> rfList = rfDao.retreiveAllFormsOfEmployee(emp);
 				List<ReimbursementForm> rfList2= rfDao.retreiveFormsToApprove(emp);
 				listArray.add(rfList);

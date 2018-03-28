@@ -129,9 +129,7 @@ function getCookie(cname) {
 }
 
 window.onload = function(){
-    var username = getCookie("username");
     var nameElement = document.getElementById("employeeName");
-    nameElement.innerHTML = username;
     
     
     //Step 1.
@@ -141,11 +139,12 @@ window.onload = function(){
     xhr.onreadystatechange = function(){
         if(xhr.readyState===4 && xhr.status ===200){
             var rfList = JSON.parse(xhr.responseText);
-            for(var i=0;i<rfList[0].length;i++){
-                addForm(rfList[0][i]);
+            nameElement.innerHTML=rfList[0];
+            for(var i=0;i<rfList[1].length;i++){
+                addForm(rfList[1][i]);
             }
-            if(rfList[1].length>0){
-                createToApproveTable(rfList[1]);
+            if(rfList[2].length>0){
+                createToApproveTable(rfList[2]);
             }
         }
         else{
